@@ -11,7 +11,7 @@ test:
 
 go: proto_go gateways_go
 
-proto_go: protowrap
+proto_go: protowrap grpc_gatway
 	protowrap \
 	  -Isrc \
 	  -I$(GOPATH)/src/github.com/grpc-ecosystem/grpc-gateway/third_party/googleapis \
