@@ -5,5 +5,5 @@ To update either `src/lightstep/collector/collector.proto|lightstep_carrier.prot
 Update subtree:
 
 ```
-git subtree add --prefix src/lightstep git@github.com:lightstep/lightstep-tracer-common.git master --squash
+git subtree pull --prefix src/lightstep git@github.com:lightstep/lightstep-tracer-common.git master --squash
 ```
