@@ -1,29 +1,20 @@
 PROTOFILES=$(shell find src | grep '\.proto')
 
-default: clean go
+default: clean build
 
 .PHONY: test
 
 test:
 	go build ./...
 
-.PHONY: go proto_go gateways_go
+.PHONY: build
 
-go: proto_go gateways_go
-
-proto_go: protowrap grpc_gatway
+build: protowrap grpc_gatway
 	protowrap \
 	  -Isrc \
 	  -I$(GOPATH)/src/github.com/grpc-ecosystem/grpc-gateway/third_party/googleapis \
 	  -I$(GOPATH)/src/github.com/golang/protobuf/ptypes/timestamp \
 	  --go_out=plugins=grpc:go \
-	  $(PROTOFILES)
-
-gateways_go: protowrap grpc_gatway
-	protowrap \
-	  -Isrc \
-	  -I$(GOPATH)/src/github.com/grpc-ecosystem/grpc-gateway/third_party/googleapis \
-	  -I$(GOPATH)/src/github.com/golang/protobuf/ptypes/timestamp \
 	  --grpc-gateway_out=logtostderr=true:go \
 	  $(PROTOFILES)
 
